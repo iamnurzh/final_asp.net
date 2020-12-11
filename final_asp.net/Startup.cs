@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using final_asp.net.Data;
+using final_asp.net.Repositories;
+using final_asp.net.Services;
 
 namespace final_asp.net
 {
@@ -29,6 +31,15 @@ namespace final_asp.net
 
             services.AddDbContext<final_aspnetContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("final_aspnetContext")));
+
+            services.AddScoped<CourseService>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<DepartmentService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<InstructorService>();
+            services.AddScoped<IInstructorRepository, InstructorRepository>();
+            services.AddScoped<StudentService>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

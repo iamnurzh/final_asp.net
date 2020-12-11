@@ -7,11 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final_asp.net.Data;
 using final_asp.net.Models;
+using final_asp.net.Services;
 
 namespace final_asp.net.Controllers
 {
     public class InstructorsController : Controller
     {
+        private readonly InstructorService _instructorService;
+
+        public InstructorsController(InstructorService instructorService)
+        {
+            _instructorService = instructorService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var instructors = await _instructorService.GetInstructors();
+            return View(instructors);
+        }
+
+
         private readonly final_aspnetContext _context;
 
         public InstructorsController(final_aspnetContext context)
@@ -19,12 +34,7 @@ namespace final_asp.net.Controllers
             _context = context;
         }
 
-        // GET: Instructors
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Instructor.ToListAsync());
-        }
-
+       
         // GET: Instructors/Details/5
         public async Task<IActionResult> Details(int? id)
         {

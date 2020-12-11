@@ -9,6 +9,17 @@ namespace final_asp.net.Models
 {
     public class Student
     {
+        public Student()
+        {
+        }
+
+        public Student(int ID, string LastName, string FirstMidName, DateTime EnrollmentDate)
+        {
+            this.ID = ID;
+            this.LastName = LastName;
+            this.FirstMidName = FirstMidName;
+            this.EnrollmentDate = EnrollmentDate;
+        }
         public int ID { get; set; }
         [Required]
         [StringLength(50)]

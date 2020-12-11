@@ -7,22 +7,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final_asp.net.Data;
 using final_asp.net.Models;
+using final_asp.net.Services;
 
 namespace final_asp.net.Controllers
 {
     public class DepartmentsController : Controller
     {
+
+
+        private readonly DepartmentService _departmentService;
+
+        public DepartmentsController(DepartmentService departmentService)
+        {
+            _departmentService = departmentService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var departments = await _departmentService.GetDepartments();
+            return View(departments);
+        }
+
         private readonly final_aspnetContext _context;
 
         public DepartmentsController(final_aspnetContext context)
         {
             _context = context;
-        }
-
-        // GET: Departments
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Department.ToListAsync());
         }
 
         // GET: Departments/Details/5

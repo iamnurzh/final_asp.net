@@ -9,6 +9,11 @@ namespace final_asp.net.Models
 {
     public class OfficeAssignment
     {
+        public OfficeAssignment(int InstructorID, string Location)
+        {
+            this.InstructorID = InstructorID;
+            this.Location = Location;
+        }
         [Key]
         [ForeignKey("Instructor")]
         public int InstructorID { get; set; }

@@ -9,6 +9,16 @@ namespace final_asp.net.Models
 {
     public class Course
     {
+        public Course()
+        {
+        }
+
+        public Course(int CourseID, string Title, int Credits)
+        {
+            this.CourseID = CourseID;
+            this.Title = Title;
+            this.Credits = Credits;
+        }
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Number")]
         public int CourseID { get; set; }

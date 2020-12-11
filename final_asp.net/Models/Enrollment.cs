@@ -12,6 +12,12 @@ namespace final_asp.net.Models
     }
     public class Enrollment
     {
+        public Enrollment(int EnrollmentID, int CourseID, int StudentID)
+        {
+            this.EnrollmentID = EnrollmentID;
+            this.CourseID = CourseID;
+            this.StudentID = StudentID;
+        }
         public int EnrollmentID { get; set; }
         public int CourseID { get; set; }
         public int StudentID { get; set; }

@@ -9,6 +9,16 @@ namespace final_asp.net.Models
 {
     public class Instructor
     {
+        public Instructor()
+        {
+        }
+
+        public Instructor(int ID, string LastName, string FirstMidName)
+        {
+            this.ID = ID;
+            this.LastName = LastName;
+            this.FirstMidName = FirstMidName;
+        }
         public int ID { get; set; }
         [Required]
         [StringLength(50)]

@@ -7,11 +7,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final_asp.net.Data;
 using final_asp.net.Models;
+using final_asp.net.Services;
 
 namespace final_asp.net.Controllers
 {
     public class StudentsController : Controller
     {
+
+        private readonly StudentService _studentService;
+
+        public StudentsController(StudentService studentService)
+        {
+            _studentService = studentService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var students = await _studentService.GetStudents();
+            return View(students);
+        }
+
+
         private readonly final_aspnetContext _context;
 
         public StudentsController(final_aspnetContext context)
@@ -19,12 +35,7 @@ namespace final_asp.net.Controllers
             _context = context;
         }
 
-        // GET: Students
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Student.ToListAsync());
-        }
-
+       
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {

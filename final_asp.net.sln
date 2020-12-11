@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "final_asp.net", "final_asp.net\final_asp.net.csproj", "{ABCBDBE6-84B1-410F-98A4-50B0271DA465}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "final_asp.net", "final_asp.net\final_asp.net.csproj", "{ABCBDBE6-84B1-410F-98A4-50B0271DA465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject1", "XUnitTestProject1\XUnitTestProject1.csproj", "{FA721A35-A240-46A6-85E9-4D0FA89E3019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{ABCBDBE6-84B1-410F-98A4-50B0271DA465}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABCBDBE6-84B1-410F-98A4-50B0271DA465}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABCBDBE6-84B1-410F-98A4-50B0271DA465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA721A35-A240-46A6-85E9-4D0FA89E3019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA721A35-A240-46A6-85E9-4D0FA89E3019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA721A35-A240-46A6-85E9-4D0FA89E3019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA721A35-A240-46A6-85E9-4D0FA89E3019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

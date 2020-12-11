@@ -7,11 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final_asp.net.Data;
 using final_asp.net.Models;
+using final_asp.net.Services;
 
 namespace final_asp.net.Controllers
 {
     public class CoursesController : Controller
     {
+
+        private readonly CourseService _courseService;
+
+        public CoursesController(CourseService courseService)
+        {
+            _courseService = courseService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var courses = await _courseService.GetCourses();
+            return View(courses);
+        }
+
         private readonly final_aspnetContext _context;
 
         public CoursesController(final_aspnetContext context)
@@ -19,12 +34,6 @@ namespace final_asp.net.Controllers
             _context = context;
         }
 
-        // GET: Courses
-        public async Task<IActionResult> Index()
-        {
-            var final_aspnetContext = _context.Course.Include(c => c.Department);
-            return View(await final_aspnetContext.ToListAsync());
-        }
 
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
