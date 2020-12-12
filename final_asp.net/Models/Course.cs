@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,6 +22,8 @@ namespace final_asp.net.Models
         }
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Number")]
+
+        [Remote(action: "ValidateCourseId", controller: "Courses")]
         public int CourseID { get; set; }
 
         [StringLength(50, MinimumLength = 3)]

@@ -13,6 +13,7 @@ namespace final_asp.net.Controllers
 {
     public class InstructorsController : Controller
     {
+        /*
         private readonly InstructorService _instructorService;
 
         public InstructorsController(InstructorService instructorService)
@@ -24,7 +25,12 @@ namespace final_asp.net.Controllers
         {
             var instructors = await _instructorService.GetInstructors();
             return View(instructors);
+        }*/
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Instructor.ToListAsync());
         }
+
 
 
         private readonly final_aspnetContext _context;

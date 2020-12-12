@@ -14,17 +14,21 @@ namespace final_asp.net.Controllers
     public class CoursesController : Controller
     {
 
-        private readonly CourseService _courseService;
+        /* private readonly CourseService _courseService;
 
-        public CoursesController(CourseService courseService)
-        {
-            _courseService = courseService;
-        }
+         public CoursesController(CourseService courseService)
+         {
+             _courseService = courseService;
+         }
 
+         public async Task<IActionResult> Index()
+         {
+             var courses = await _courseService.GetCourses();
+             return View(courses);
+         }*/
         public async Task<IActionResult> Index()
         {
-            var courses = await _courseService.GetCourses();
-            return View(courses);
+            return View(await _context.Course.ToListAsync());
         }
 
         private readonly final_aspnetContext _context;
@@ -164,6 +168,14 @@ namespace final_asp.net.Controllers
         private bool CourseExists(int id)
         {
             return _context.Course.Any(e => e.CourseID == id);
+        }
+
+        public IActionResult ValidateCourseId(int id)
+        {
+            if (id == 1)
+                return Json(data: "It's full");
+
+            return Json(data: true);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using final_asp.net.CustomValidation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,6 +19,19 @@ namespace final_asp.net.Models
             this.ID = ID;
             this.LastName = LastName;
             this.FirstMidName = FirstMidName;
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> errors = new List<ValidationResult>();
+
+            if (string.IsNullOrWhiteSpace(this.LastName))
+                errors.Add(new ValidationResult("Lastname is empty"));
+
+            if (string.IsNullOrWhiteSpace(this.FirstMidName))
+                errors.Add(new ValidationResult("Firstname is empty"));
+
+            return errors;
         }
         public int ID { get; set; }
         [Required]
@@ -41,6 +55,8 @@ namespace final_asp.net.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Hire Date")]
+
+        [CustomDate(ErrorMessage = "Please be careful!")]
         public DateTime HireDate { get; set; }
 
         /*public virtual ICollection<Course> Courses { get; set; }

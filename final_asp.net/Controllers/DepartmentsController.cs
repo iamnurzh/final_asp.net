@@ -14,7 +14,7 @@ namespace final_asp.net.Controllers
     public class DepartmentsController : Controller
     {
 
-
+        /*
         private readonly DepartmentService _departmentService;
 
         public DepartmentsController(DepartmentService departmentService)
@@ -26,7 +26,13 @@ namespace final_asp.net.Controllers
         {
             var departments = await _departmentService.GetDepartments();
             return View(departments);
+        }*/
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Department.ToListAsync());
         }
+
 
         private readonly final_aspnetContext _context;
 

@@ -13,7 +13,7 @@ namespace final_asp.net.Controllers
 {
     public class StudentsController : Controller
     {
-
+        /*
         private readonly StudentService _studentService;
 
         public StudentsController(StudentService studentService)
@@ -25,7 +25,12 @@ namespace final_asp.net.Controllers
         {
             var students = await _studentService.GetStudents();
             return View(students);
+        }*/
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Student.ToListAsync());
         }
+
 
 
         private readonly final_aspnetContext _context;
@@ -159,6 +164,14 @@ namespace final_asp.net.Controllers
         private bool StudentExists(int id)
         {
             return _context.Student.Any(e => e.ID == id);
+        }
+
+        public IActionResult ValidateStudentId(int id)
+        {
+            if (id == 1)
+                return Json(data: "It's full");
+
+            return Json(data: true);
         }
     }
 }

@@ -14,6 +14,8 @@ namespace final_asp.net.Models
             this.InstructorID = InstructorID;
             this.Location = Location;
         }
+
+
         [Key]
         [ForeignKey("Instructor")]
         public int InstructorID { get; set; }
