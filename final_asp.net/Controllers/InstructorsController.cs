@@ -26,10 +26,54 @@ namespace final_asp.net.Controllers
             var instructors = await _instructorService.GetInstructors();
             return View(instructors);
         }*/
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
-            return View(await _context.Instructor.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var instructors = from s in _context.Instructor
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                instructors = instructors.Where(s => s.LastName.Contains(searchString)
+                                       || s.FirstMidName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    instructors = instructors.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    instructors = instructors.OrderBy(s => s.HireDate);
+                    break;
+                case "date_desc":
+                    instructors = instructors.OrderByDescending(s => s.HireDate);
+                    break;
+                default:
+                    instructors = instructors.OrderBy(s => s.LastName);
+                    break;
+            }
+
+            int pageSize = 3;
+            return View(await PaginatedList<Instructor>.CreateAsync(instructors.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
+    
 
 
 

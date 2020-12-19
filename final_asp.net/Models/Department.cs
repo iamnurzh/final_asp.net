@@ -16,11 +16,10 @@ namespace final_asp.net.Models
         {
         }
 
-        public Department(int DepartmentID, string Name, int Budget, DateTime StartDate)
+        public Department(int DepartmentID, string Name, DateTime StartDate)
         {
             this.DepartmentID = DepartmentID;
             this.Name = Name;
-            this.Budget = Budget;
             this.StartDate = StartDate;
         }
         public int DepartmentID { get; set; }
@@ -29,9 +28,6 @@ namespace final_asp.net.Models
         public string Name { get; set; }
 
 
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "money")]
-        public int Budget { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
